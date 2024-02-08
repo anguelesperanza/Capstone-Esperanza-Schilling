@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+
+a {
+  background-color: gainsboro;
+  color: cornflowerblue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-radius: 10%;
+}
+
+#header{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 40px;
+  color:black;
+  background-color: rgb(52, 52, 80);
+  width:100%;
+  margin-bottom: 15px;
+}
