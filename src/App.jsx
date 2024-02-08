@@ -8,6 +8,7 @@ import Cart from './Components/Cart.jsx'
 import About from './Components/About.jsx'
 import Search from './Components/Search.jsx'
 import { Route, Routes, Navigate, Link} from 'react-router-dom'
+import Featured from './Components/Featured.jsx'
 
 function App() {
   return (
