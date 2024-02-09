@@ -14,8 +14,8 @@ function App() {
   return (
     <>
       <div>
-        <Header />
         <nav>
+          
           <Link to="/home">Home</Link>&nbsp;
           <Link to="/browse">Search</Link>&nbsp;
           <Link to="/about">About</Link>&nbsp;
@@ -23,6 +23,7 @@ function App() {
           <br />
         </nav>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/browse" element={<Search />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
