@@ -5,6 +5,10 @@ import dictionary from "../assets/dictionary.jpg";
 import illiad from "../assets/illiad.webp";
 import captain from "../assets/captain.jpg";
 
+// Testing code
+import ProductDetails from "./ProductDetails";
+// import { useNavigate } from "react-router-dom";
+
 const state = {
   products: [
     {
@@ -162,29 +166,41 @@ const state = {
   ],
 };
 
-
 function Products() {
   //Search Hook
   const [search, setSearch] = useState("");
-  console.log(search)
+  console.log(search);
   const [pagelimit, setpageLimit] = useState(4);
 
   //Filter Retrieved by Search Bar
-  const listItems = state.products.filter((item) => {
-    return search.toLowerCase() ==='' ? item : item.name.toLowerCase().includes(search)
-  }).map((item, index) => {
+  const listItems = state.products
+    .filter((item) => {
+      return search.toLowerCase() === ""
+        ? item
+        : item.name.toLowerCase().includes(search);
+    })
+    .map((item, index) => {
       return (
         <li key={index}>
           <h3>
-            {item.name}
-            <br />
-            <img
-              src={
-                item.productImage == null
-                  ? "https://t3.ftcdn.net/jpg/00/06/45/56/360_F_6455661_Ptvg5iAO0DpUlt0ItlO8YewZpvU3IxwX.jpg"
-                  : item.productImage
-              }
-            />
+            <Link to={"/products/" + item.id}>
+              {item.name}
+              <br />
+              <img
+                // onClick={() => {
+                //   console.log(item.name + " has been clicked");
+                //   <Link to="/products/${item.id}">
+                //     {/* <ProductDetails /> */}
+                //   </Link>;
+                // }}
+                src={
+                  item.productImage == null
+                    ? "https://t3.ftcdn.net/jpg/00/06/45/56/360_F_6455661_Ptvg5iAO0DpUlt0ItlO8YewZpvU3IxwX.jpg"
+                    : item.productImage
+                }
+              />
+            </Link>
+
             <br />
             {item.price}
           </h3>
@@ -199,7 +215,11 @@ function Products() {
   return (
     <div>
       <h4>Books Page</h4>
-      <input onChange={(e)=> setSearch(e.target.value)} id="a" placeholder="Search . . ." />
+      <input
+        onChange={(e) => setSearch(e.target.value)}
+        id="a"
+        placeholder="Search . . ."
+      />
       <div>
         <ul>{listItems.slice(0, pagelimit)}</ul>
       </div>
