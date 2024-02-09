@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import potter from "../assets/potter.jpg";
 import dictionary from "../assets/dictionary.jpg";
 import illiad from "../assets/illiad.webp";
@@ -10,27 +10,71 @@ const state = {
     {
       id: 9,
       name: "Raincoat",
+      price: 14.99,
       description: "foul weather outerwear",
     },
     {
-      id: 8,
-      name: "Socks",
-      description: "for keeping feet warm",
+      id: 9,
+      name: "Raincoat",
+      price: 14.99,
+      description: "foul weather outerwear",
+      productImage: dictionary,
     },
     {
+      id: 9,
+      name: "Raincoat",
+      price: 14.99,
+      description: "foul weather outerwear",
+      productImage: dictionary,
+    },
+    {
+      id: 9,
+      name: "Raincoat",
+      price: 14.99,
+      description: "foul weather outerwear",
+      productImage: dictionary,
+    },
+    {
+      id: 9,
+      name: "Raincoat",
+      price: 14.99,
+      description: "foul weather outerwear",
+      productImage: dictionary,
+    },
+    {
+      id: 9,
+      name: "Raincoat",
+      price: 14.99,
+      description: "foul weather outerwear",
+      productImage: dictionary,
+    },
+    {
+      id: 8,
+      price: 14.99,
+      name: "Socks",
+      description: "for keeping feet warm",
+      productImage: dictionary,
+    },
+    {
+      price: 14.99,
       id: 7,
       name: "Gloves",
       description: "to protect hands",
+      productImage: dictionary,
     },
     {
+      price: 14.99,
       id: 6,
       name: "Shoes",
       description: "all purpose footwear",
+      productImage: dictionary,
     },
     {
+      price: 14.99,
       id: 5,
       name: "Hat",
       description: "head wear",
+      productImage: dictionary,
     },
     {
       id: 1,
@@ -57,29 +101,39 @@ const state = {
       productImage: captain,
     },
     {
+      price: 14.99,
       id: 9,
       name: "Raincoat",
       description: "foul weather outerwear",
+      productImage: dictionary,
     },
     {
+      price: 14.99,
       id: 8,
       name: "Socks",
       description: "for keeping feet warm",
+      productImage: dictionary,
     },
     {
+      price: 14.99,
       id: 7,
       name: "Gloves",
       description: "to protect hands",
+      productImage: dictionary,
     },
     {
+      price: 14.99,
       id: 6,
       name: "Shoes",
       description: "all purpose footwear",
+      productImage: dictionary,
     },
     {
+      price: 14.99,
       id: 5,
       name: "Hat",
       description: "head wear",
+      productImage: dictionary,
     },
     {
       id: 1,
@@ -107,30 +161,36 @@ const state = {
     },
   ],
 };
-const delimitResults = () => {};
-// var film = this.props.data.slice(0, 5).map((item) => {
-//   return <FilmItem key={item.id} film={item} />;
-// });
 
-// return film;
-const listItems = state.products.map((item, index) => {
-  // const [pagelimit, setpageLimit] = useState(4);
-  // const increase = 4 //pagelimit
 
-  // if (index >= increase) {
-  //   return;
-  // }
-  return (
-    <li id="bookcontent" key={index}>
-      {item.name}
-    </li>
-  );
-});
-// function addpages() {
-//   setpageLimit(pagelimit + 2);
-// }
 function Products() {
+  //Search Hook
+  const [search, setSearch] = useState("");
+  console.log(search)
   const [pagelimit, setpageLimit] = useState(4);
+
+  //Filter Retrieved by Search Bar
+  const listItems = state.products.filter((item) => {
+    return search.toLowerCase() ==='' ? item : item.name.toLowerCase().includes(search)
+  }).map((item, index) => {
+      return (
+        <li key={index}>
+          <h3>
+            {item.name}
+            <br />
+            <img
+              src={
+                item.productImage == null
+                  ? "https://t3.ftcdn.net/jpg/00/06/45/56/360_F_6455661_Ptvg5iAO0DpUlt0ItlO8YewZpvU3IxwX.jpg"
+                  : item.productImage
+              }
+            />
+            <br />
+            {item.price}
+          </h3>
+        </li>
+      );
+    });
   function addpages() {
     setpageLimit(pagelimit + 2);
   }
@@ -139,6 +199,7 @@ function Products() {
   return (
     <div>
       <h4>Books Page</h4>
+      <input onChange={(e)=> setSearch(e.target.value)} id="a" placeholder="Search . . ." />
       <div>
         <ul>{listItems.slice(0, pagelimit)}</ul>
       </div>

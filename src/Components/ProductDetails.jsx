@@ -1,6 +1,7 @@
 function ProductDetails() {
     <div>
-    <h1>hi</h1>
+    <h1>This is The Product Details Page</h1>
+    
     </div>
 }
 export default ProductDetails
