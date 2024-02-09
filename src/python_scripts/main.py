@@ -1,13 +1,37 @@
 # #this is the script that will handle creating the ML model. 
-# #right now it does not do this. 
+# Status of the ML Model Code
+# WIP [x]
+# Completed []
+# Converstion not finished; line 99 bug
 
-import csv
+# Attempting to use a movie csv first as following a tutorial
+import numpy as np
+from scipy.sparse import csr_matrix
+from sklearn.neighbors import NearestNeighbors
 import pandas as pd
 
-print("Hello World")
+print("----------------------------BOOKS(New Attempt)-----------------------------")
 
-file = r'..\assets\books.csv'
 
-books = pd.read_csv(file)
+#import the dataset
+# indexing on title, as such, it will not show up as a column in the dataframe
+books = pd.read_csv(r'..\assets\books.csv') #dtype={'ISBN': 'int32', 'Book-Title': 'str'}
 
-print(books)
+X = books[['popularity', 'price']]
+model = NearestNeighbors(n_neighbors=5)
+model.fit(X.values)
+original_book_index = 0 
+
+product_features = X.iloc[original_book_index].values.reshape(1,-1)
+
+
+distances, indices = model.kneighbors(product_features)
+
+print(distances)
+print(indices)
+
+recommended_indices = indices.flatten()
+recomended_books = books.iloc[recommended_indices]['BookTitle'][1:]
+
+print("Here's the book you chose", books.iloc[original_book_index])
+print("Here's the recommended books", recomended_books)
