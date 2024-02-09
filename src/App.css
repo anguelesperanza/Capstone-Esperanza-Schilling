@@ -1,37 +1,12 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0,2rem, 2rem, 2rem, 2rem;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
 .card {
   padding: 2em;
@@ -50,14 +25,7 @@ a {
   border-radius: 10%;
 }
 
-#header {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: 40px;
-  color: black;
-  background-color: rgb(52, 52, 80);
-  width: 100%;
-  margin-bottom: 15px;
-}
+
 
 li {
   list-style-type: none;
@@ -68,11 +36,11 @@ li {
   display: inline-block;
   text-align: center;
   width: 250px;
-  height:300px
+  height: 300px;
 }
 
 ul {
-  padding:0;
+  padding: 0;
 }
 
 /* #bookcontent {
@@ -80,8 +48,15 @@ ul {
 } */
 
 img {
-  width:160px;
-  height:200px;
+  width: 160px;
+  height: 200px;
   object-fit: cover;
   border-radius: 5%;
+}
+
+#showMore{
+  border-width: 1px;
+  border-color: black;
+  font-size: 15px;
+  background-color: lightskyblue;
 }
