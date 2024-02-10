@@ -208,10 +208,12 @@ function Products() {
         : item.name.toLowerCase().includes(search);
     })
     .map((item, index) => {
+      //{item.BookTitle.length >20? item>BookTitle.slice(0, 20) + "..." : item.BookTitle }
+      const title = item.BookTitle.slice(0,20)+ "..."
       return (
         <li key={index}>
           <h3>
-            {item.BookTitle}
+            {title}
             <br />
             <Link to={"productDetails/" + item.ISBN}>
               <img
