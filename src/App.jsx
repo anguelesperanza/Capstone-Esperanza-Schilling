@@ -31,7 +31,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />} />
           <Route
-            path="/productDetails/:ISBN"
+            path="products/productDetails/:ISBN"
             element={<ProductDetails book={book} />}
           />
         </Routes>

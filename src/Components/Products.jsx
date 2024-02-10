@@ -163,7 +163,6 @@ const state = {
 
 function Products() {
   const url = new URL("http://localhost:4000/products/");
-
   //const { ISBN } = useParams();
 
   const [book, setBook] = useState([]);
@@ -214,13 +213,15 @@ function Products() {
           <h3>
             {item.BookTitle}
             <br />
-            <img
-              src={
-                item.ImageURLL == null
-                  ? "https://t3.ftcdn.net/jpg/00/06/45/56/360_F_6455661_Ptvg5iAO0DpUlt0ItlO8YewZpvU3IxwX.jpg"
-                  : item.ImageURLL
-              }
-            />
+            <Link to={"productDetails/" + item.ISBN}>
+              <img
+                src={
+                  item.ImageURLL == null
+                    ? "https://t3.ftcdn.net/jpg/00/06/45/56/360_F_6455661_Ptvg5iAO0DpUlt0ItlO8YewZpvU3IxwX.jpg"
+                    : item.ImageURLL
+                }
+              />
+            </Link>
             <br />
             {item.price}
           </h3>
