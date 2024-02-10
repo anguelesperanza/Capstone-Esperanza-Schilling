@@ -1,20 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Header from './Components/Header.jsx'
-import Home from './Components/Home.jsx'
-import Cart from './Components/Cart.jsx'
-import About from './Components/About.jsx'
-import Search from './Components/Search.jsx'
-import { Route, Routes, Navigate, Link} from 'react-router-dom'
-import Featured from './Components/Featured.jsx'
-import Products from './Components/Products.jsx' 
-import ProductDetails from './Components/ProductDetails.jsx'
-
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import Header from "./Components/Header.jsx";
+import Home from "./Components/Home.jsx";
+import Cart from "./Components/Cart.jsx";
+import About from "./Components/About.jsx";
+import Search from "./Components/Search.jsx";
+import { Route, Routes, Navigate, Link } from "react-router-dom";
+import Featured from "./Components/Featured.jsx";
+import Products from "./Components/Products.jsx";
+import ProductDetails from "./Components/ProductDetails.jsx";
 
 function App() {
-  const[book, setBook] = useState({});
+  const [book, setBook] = useState({});
   return (
     <>
       <div>
@@ -27,11 +26,13 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products book={book}/>} />
+          <Route path="/products" element={<Products book={book} />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />} />
-          <Route path="/productDetails/:ISBN" element={<ProductDetails book={book}/>}
+          <Route
+            path="products/productDetails/:ISBN"
+            element={<ProductDetails book={book} />}
           />
         </Routes>
       </div>
@@ -39,4 +40,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

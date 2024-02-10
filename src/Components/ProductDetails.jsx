@@ -40,6 +40,17 @@ function ProductDetails() {
       <p>Popularity: {book.popularity}</p>
       <p>Price: {book.price}</p>
       <p>Category: {book.category}</p>
+
+      <p>Category: {book.category}</p>
+
+      <button
+        onClick={() => {
+          let cartData = JSON.stringify(book);
+          localStorage.setItem(book.ISBN, cartData);
+        }}
+      >
+        Buy Now!
+      </button>
     </div>
   );
 }
