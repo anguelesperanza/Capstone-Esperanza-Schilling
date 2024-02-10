@@ -27,11 +27,11 @@ module.exports.findBookByISBN = function (ISBN, callback) {
   
 };
 
-// retrieve all books
-// module.exports.findAllBook = function (callback) {
-//   let dataPromise = collection
-//     .find({})
-//     .toArray();
-//   dataPromise.then((book) => callback(book));
-// };
+//retrieve all books
+module.exports.findAllBook = function (callback) {
+  let dataPromise = collection
+    .find({})
+    .toArray();
+  dataPromise.then((book) => callback(book));
+};
   

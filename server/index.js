@@ -26,8 +26,23 @@ app.get("/productDetails/:ISBN", (req, res) => {
   });
 });
 
-app.get("/books", (req, res) => {
-  mongoDao.findAllBook(function (data) {
-    res.send(data);
+// app.get("/books", (req, res) => {
+//   mongoDao.findAllBook(function (data) {
+//     res.send(data);
+//   });
+// });
+app.get("/products", (req, res) => {
+  // let sw = dao.findallcharacters(req.params.id);
+  // was trying result.book, needed just result
+  mongoDao.findAllBook((result) => {
+    if (result !== undefined) {
+      res.send(result);
+      console.log("In if statement");
+    } else {
+      res.statusCode = 404;
+      res.end();
+      console.log("In else statement");
+      console.log(result);
+    }
   });
 });

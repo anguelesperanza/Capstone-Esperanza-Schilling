@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, Link, useParams } from "react-router-dom";
 import potter from "../assets/potter.jpg";
 import dictionary from "../assets/dictionary.jpg";
 import illiad from "../assets/illiad.webp";
 import captain from "../assets/captain.jpg";
-
 const state = {
   products: [
     {
@@ -162,27 +161,64 @@ const state = {
   ],
 };
 
-
 function Products() {
+  const url = new URL("http://localhost:4000/products/");
+
+  //const { ISBN } = useParams();
+
+  const [book, setBook] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setBook(json);
+        console.log("Could find record");
+        console.log(book);
+      } catch (e) {
+        console.log(e);
+        console.log("Couldnt find record");
+      }
+    }
+    fetchData();
+  }, []);
   //Search Hook
   const [search, setSearch] = useState("");
-  console.log(search)
-  const [pagelimit, setpageLimit] = useState(4);
+  console.log(search);
+  const [pagelimit, setpageLimit] = useState(10);
 
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const response = await fetch();
+  //       const json = await response.json();
+  //       setBook(json);
+  //     } catch (e) {
+  //       console.log(e);
+  //       console.log("Couldnt find record");
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
   //Filter Retrieved by Search Bar
-  const listItems = state.products.filter((item) => {
-    return search.toLowerCase() ==='' ? item : item.name.toLowerCase().includes(search)
-  }).map((item, index) => {
+  const ListRealItems = book
+    .filter((item) => {
+      return search.toLowerCase() === ""
+        ? item
+        : item.name.toLowerCase().includes(search);
+    })
+    .map((item, index) => {
       return (
         <li key={index}>
           <h3>
-            {item.name}
+            {item.BookTitle}
             <br />
             <img
               src={
-                item.productImage == null
+                item.ImageURLL == null
                   ? "https://t3.ftcdn.net/jpg/00/06/45/56/360_F_6455661_Ptvg5iAO0DpUlt0ItlO8YewZpvU3IxwX.jpg"
-                  : item.productImage
+                  : item.ImageURLL
               }
             />
             <br />
@@ -191,23 +227,37 @@ function Products() {
         </li>
       );
     });
+  /////////////////////////////////////////////
+  console.log(typeof book);
+  // constListRealItems = book((item, index) => {
+  //   return(
+  //     <li key={index}>{item.BookTitle}</li>
+  //   )
+  // })
   function addpages() {
-    setpageLimit(pagelimit + 2);
+    setpageLimit(pagelimit + 50);
   }
 
-  console.log(typeof listItems);
+  console.log(typeof ListRealItems);
   return (
     <div>
       <h4>Books Page</h4>
-      <input onChange={(e)=> setSearch(e.target.value)} id="a" placeholder="Search . . ." />
+      <input
+        onChange={(e) => setSearch(e.target.value)}
+        id="a"
+        placeholder="Search . . ."
+      />
       <div>
-        <ul>{listItems.slice(0, pagelimit)}</ul>
+        <ul>{ListRealItems.slice(0, pagelimit)}</ul>
       </div>
       <button id="showMore" onClick={addpages}>
         Show More
       </button>
     </div>
   );
+  // return(
+  //   <div>{book.BookTitle}</div>
+  // )
 }
 
 export default Products;
