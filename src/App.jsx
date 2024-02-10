@@ -9,14 +9,16 @@ import About from './Components/About.jsx'
 import Search from './Components/Search.jsx'
 import { Route, Routes, Navigate, Link} from 'react-router-dom'
 import Featured from './Components/Featured.jsx'
-import Products from './Components/Products.jsx'
+import Products from './Components/Products.jsx' 
+import ProductDetails from './Components/ProductDetails.jsx'
+
 
 function App() {
+  const[book, setBook] = useState({});
   return (
     <>
       <div>
         <nav>
-          
           <Link to="/home">Home</Link>&nbsp;
           <Link to="/products">Products</Link>&nbsp;
           <Link to="/about">About</Link>&nbsp;
@@ -29,6 +31,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />} />
+          <Route path="/productDetails/:ISBN" element={<ProductDetails book={book}/>}
+          />
         </Routes>
       </div>
     </>
