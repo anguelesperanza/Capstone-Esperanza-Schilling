@@ -13,6 +13,7 @@ import Products from "./Components/Products.jsx";
 import ProductDetails from "./Components/ProductDetails.jsx";
 
 function App() {
+  const [book, setBook] = useState({});
   return (
     <>
       <div>
@@ -25,11 +26,14 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:isbn" element={<ProductDetails />}></Route>
+          <Route path="/products" element={<Products book={book} />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />} />
+          <Route
+            path="/productDetails/:ISBN"
+            element={<ProductDetails book={book} />}
+          />
         </Routes>
       </div>
     </>

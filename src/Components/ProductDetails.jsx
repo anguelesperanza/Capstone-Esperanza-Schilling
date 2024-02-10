@@ -1,46 +1,46 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+
+const url = new URL("http://localhost:4000/productDetails/");
 
 function ProductDetails() {
-  const { isbn } = useParams();
+  //id should be ISBN
+  const { ISBN } = useParams();
+  console.log(ISBN);
+  const books_url = url + ISBN;
+  const [book, setBook] = useState([]);
 
-  // const thisBook = props.product.
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(books_url);
+        const json = await response.json();
+        setBook(json);
+      } catch (e) {
+        console.log(e);
+        console.log("Couldnt find record");
+      }
+    }
+    fetchData();
+  }, []);
 
-  //   Will need to add more tags once able to pull data
   return (
-    <div className="productCard">
-      <h1>Product Details Page</h1>
-      <img src="https://images-na.ssl-images-amazon.com/images/I/8166xCVDGnL._SL1500_.jpg"></img>
-      <div className="specItem">
-        <h1>Book Name</h1>
-        <h2>{isbn}</h2>
-      </div>
-      <button
-        onClick={() => {
-          // May need to change items to a unique value like ISBN
-          let cartData = '{"items":[{"Desc":"Item1"},{"Desc":"Item2"}]}';
-
-          localStorage.setItem("cartInfo", cartData);
-        }}
-      >
-        Add to Card!
-      </button>
-      <button
-        onClick={() => {
-          console.log(JSON.parse(localStorage.getItem("cartInfo")));
-        }}
-      >
-        Load Local Storage
-      </button>
+    <div>
+      <h1>This is The Product Details for: </h1>
+      <h2>{book.BookTitle}</h2>
+      <img
+        src={
+          book.ImageURLL == null
+            ? "https://t3.ftcdn.net/jpg/00/06/45/56/360_F_6455661_Ptvg5iAO0DpUlt0ItlO8YewZpvU3IxwX.jpg"
+            : book.ImageURLL
+        }
+      />
+      <p>Author: {book.BookAuthor}</p>
+      <p>{book.YearOfPublication}</p>
+      <p>Popularity: {book.popularity}</p>
+      <p>Price: {book.price}</p>
+      <p>Category: {book.category}</p>
     </div>
   );
 }
 export default ProductDetails;
-
-// <div class="card">
-//     <img src="https://images-na.ssl-images-amazon.com/images/I/8166xCVDGnL._SL1500_.jpg" alt="Avatar" style="width:100%">
-//     <div class="container">
-//         <h4><b>John Doe</b></h4>
-//         <p>Architect & Engineer</p>
-//     </div>
-// </div>
