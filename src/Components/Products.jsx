@@ -189,7 +189,11 @@ function Products() {
 
   //Filter Retrieved by Search Bar
   const ListRealItems = book.filter((item) => {
-    return search.toLowerCase() === "" ? item : item.BookTitle.toLowerCase().includes(search)
+    return search.toLowerCase() === ""
+      ? item
+      : item.BookTitle.toLowerCase().includes(search) ||
+          item.BookAuthor.toLowerCase().includes(search) ||
+          item.category.toLowerCase().includes(search)
   }).map((item, index) => {
       //{item.BookTitle.length >20? item>BookTitle.slice(0, 20) + "..." : item.BookTitle }
       const title = item.BookTitle.slice(0,20)+ "..."
