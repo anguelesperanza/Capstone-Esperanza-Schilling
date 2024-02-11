@@ -12,7 +12,6 @@ function ProductDetails() {
   console.log(ISBN);
   const books_url = url + ISBN;
   const [book, setBook] = useState([]);
-  
 
   useEffect(() => {
     async function fetchData() {
@@ -27,7 +26,7 @@ function ProductDetails() {
     }
     fetchData();
   }, []);
-  const ratingBar = (book.popularity)/2
+  const ratingBar = book.popularity / 2;
   return (
     <div>
       <h2>Find More information on your book . . .</h2>
@@ -52,8 +51,26 @@ function ProductDetails() {
 
       <button
         onClick={() => {
-          let cartData = JSON.stringify(book);
-          localStorage.setItem(book.ISBN, cartData);
+          // if (localStorage.getItem("cartdata") !== null) {
+          //   let cartData = JSON.parse(localStorage.getItem("cartdata"));
+          //   cartData.push([book.price, book.BookTitle]);
+          //   console.log(cartData);
+          //   let temp = JSON.stringify(cartData);
+          //   localStorage.setItem("cartdata", temp);
+          //   // localStorage.setItem("cartdata"), JSON.stringify(cartData);
+          // } else {
+          //   // let cartData = JSON.stringify(book);
+          //   localStorage.setItem("cartdata", [book.price, book.BookTitle]);
+          //   // localStorage.setItem();
+          // }
+
+          // let cartData = JSON.stringify(book);
+          localStorage.setItem(book.ISBN, [
+            book.price,
+            book.BookTitle,
+            book.popularity,
+          ]);
+          // localStorage.setItem()
         }}
       >
         Buy Now!
