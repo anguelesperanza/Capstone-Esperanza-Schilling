@@ -187,31 +187,20 @@ function Products() {
   console.log(search);
   const [pagelimit, setpageLimit] = useState(10);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const response = await fetch();
-  //       const json = await response.json();
-  //       setBook(json);
-  //     } catch (e) {
-  //       console.log(e);
-  //       console.log("Couldnt find record");
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
   //Filter Retrieved by Search Bar
-  const ListRealItems = book
-    .filter((item) => {
-      return search.toLowerCase() === ""
-        ? item
-        : item.name.toLowerCase().includes(search);
-    })
-    .map((item, index) => {
+  const ListRealItems = book.filter((item) => {
+    return search.toLowerCase() === ""
+      ? item
+      : item.BookTitle.toLowerCase().includes(search) ||
+          item.BookAuthor.toLowerCase().includes(search) ||
+          item.category.toLowerCase().includes(search)
+  }).map((item, index) => {
+      //{item.BookTitle.length >20? item>BookTitle.slice(0, 20) + "..." : item.BookTitle }
+      const title = item.BookTitle.slice(0,20)+ "..."
       return (
         <li key={index}>
           <h3>
-            {item.BookTitle}
+            {title}
             <br />
             <Link to={"productDetails/" + item.ISBN}>
               <img
