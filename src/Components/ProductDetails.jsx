@@ -12,7 +12,6 @@ function ProductDetails() {
   console.log(ISBN);
   const books_url = url + ISBN;
   const [book, setBook] = useState([]);
-  
 
   useEffect(() => {
     async function fetchData() {
@@ -27,7 +26,7 @@ function ProductDetails() {
     }
     fetchData();
   }, []);
-  const ratingBar = (book.popularity)/2
+  const ratingBar = book.popularity / 2;
   return (
     <div>
       <h2>Find More information on your book . . .</h2>
