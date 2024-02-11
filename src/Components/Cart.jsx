@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+// import { PythonShell } from "python-shell";
+
+// let { PythonShell } = require("python-shell");
+
 let dataObj = {};
 let total_price = 0.0;
 function Cart() {
@@ -43,6 +47,20 @@ function Cart() {
       <button
         onClick={() => {
           alert("Thank you for buying our books.");
+
+          // let options {
+          //   args:[obj1Popularity, obj1Price]
+          // }
+
+          // PythonShell.run(
+          //   "\\python_scripts\\main.py",
+          //   [dataObj[0].popularity, dataObj[0].price],
+          //   (err, res) => {
+          //     if (err) console.log(err);
+          //     if (res) console.log(res);
+          //   }
+          // );
+
           localStorage.clear();
           window.location.reload();
         }}

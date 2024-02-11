@@ -59,7 +59,11 @@ function ProductDetails() {
           // }
 
           // let cartData = JSON.stringify(book);
-          localStorage.setItem(book.ISBN, [book.price, book.BookTitle]);
+          localStorage.setItem(book.ISBN, [
+            book.price,
+            book.BookTitle,
+            book.popularity,
+          ]);
           // localStorage.setItem()
         }}
       >
